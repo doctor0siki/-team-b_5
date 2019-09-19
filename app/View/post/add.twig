@@ -10,6 +10,8 @@
 
 {#ここから表示したい情報を記載します。#}
 {% block page_content %}
+
+
     <div class="page-header text-center">
         <h1>商品一覧</h1>
     </div>
@@ -31,7 +33,7 @@
                 {# for文でresultの中の一次元目の配列をループで回す形となります #}
                 {# ループ処理中の1行はrowの中に入りますので、このループ中はrow.カラム名で情報を表示することが可能です #}
                 {% for row in result %}
-                
+
 
 
                     <tr>
