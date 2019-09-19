@@ -37,7 +37,7 @@ class Plan extends Dao
 
         //全件取得するクエリを作成
         $sql = "select * from plan where `title` like :word
-                                      or `sub-title` like :word
+                                      or `sub_title` like :word
                                       or `detail` like :word";
        if($data["cat_code"]){
          $sql.=" or cat_code=:cat_code";
@@ -70,4 +70,34 @@ class Plan extends Dao
 
     }
 
+    /**
+     * getItem Function
+     *
+     * Itemテーブルから指定idのレコードを一件取得するクエリです。
+     *
+     * @param int $id 引数として、取得したい商品のアイテムIDを指定します。
+     * @return array $result 結果情報を連想配列で指定します。
+     * @throws DBALException
+     * @copyright Ceres inc.
+     * @author y-fukumoto <y-fukumoto@ceres-inc.jp>
+     * @since 2019/08/14
+     */
+
+    public function select_plan()
+    {
+
+        //全件取得するクエリを作成
+        $sql = "select * from plan";
+
+        // SQLをプリペア
+        $statement = $this->db->prepare($sql);
+
+
+        //SQLを実行
+        $statement->execute();
+
+        //結果レコードを一件取得し、返送
+        return $statement->fetchall();
+
+    }
 }
