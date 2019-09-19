@@ -6,11 +6,29 @@
 
 {# このページに適用させたいスタイルシートを指定します #}
 {% block header_scripts_add %}
+  <style>
+    .login-page{
+      padding:80px 90px;
+      background-color:white;
+      border-radius: 20px ;
+      box-shadow:5px 5px;
+      border:1px solid #000;
+    }
+
+    .pr-string{
+      text-align:center;
+    }
+
+    .list-unstyled{
+      margin-left:80px;
+    }
+  </style>
 {% endblock %}
 
 {#ここから表示したい情報を記載します。#}
 {% block page_content %}
-    <div class="page-header text-center">
+  <div class="login-page">
+    <div class="page-header">
         <h1>ログイン</h1>
     </div>
     <div class="box">
@@ -18,10 +36,12 @@
             <div class="col-md-6">
                 <div class="well">
                     <form id="loginForm" method="POST" action="/login/">
+                      <br><br>
                         <div class="form-group">
-                            <label for="email" class="control-label">ユーザーネーム</label>
+                            <label for="email" class="control-label">メールアドレス</label>
                             <input type="email" class="form-control" id="email" name="email" value="{{ email }}" required title="Please enter you username" placeholder="example@gmail.com">
                         </div>
+                        <br>
                         <div class="form-group">
                             <label for="password" class="control-label">パスワード</label>
                             <input type="password" class="form-control" id="password" name="password" value="" required title="Please enter your password">
@@ -31,25 +51,36 @@
                                 <div class="alert alert-danger" role="alert">{{ error }}</div>
                             </div>
                         {% endif %}
+                        <br><br><br>
                         <button type="submit" class="btn btn-success btn-block">ログイン</button>
                     </form>
                 </div>
             </div>
             <div class="col-md-6">
+              <div class="pr-string">
                 <p class="lead">会員登録は <span class="text-success">無料</span> 今すぐ登録！</p>
+                <span>出張ビジネスマンの方々‼<br><br>
+                      出張だけで終わっていませんか？<br><br>
+                      その時でしかできない楽しみ方を探してみませんか？</span>
+                </p>
+              </div>
+
+
                 <ul class="list-unstyled">
-                    <li><span class="fa fa-check text-success"></span> すべての注文が見れます。</li>
-                    <li><span class="fa fa-check text-success"></span> 早い追加注文。</li>
-                    <li><span class="fa fa-check text-success"></span> お気に入りを保存できます。</li>
-                    <li><span class="fa fa-check text-success"></span> 素早い購入。</li>
+                    <li><span class="fa fa-check text-success"></span> 機能が絞られていて、分かりやすい
+                    </li>
+                    <li><span class="fa fa-check text-success"></span> その場での過ごし方プランを提供します
+                    </li>
                     <li><span class="fa fa-check text-success"></span> クーポンプレゼント
-                        <small>(カスタマー限定)</small>
                     </li>
                 </ul>
+                <br><br>
                 <p><a href="/register/" class="btn btn-info btn-block">今すぐ登録</a></p>
             </div>
         </div>
     </div>
+  </div>
+
 {% endblock %}
 
 {#共通フッタとして追記したい情報を記載します。#}

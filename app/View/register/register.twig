@@ -6,10 +6,21 @@
 
 {# このページに適用させたいスタイルシートを指定します #}
 {% block header_scripts_add %}
+  <style>
+  .register-page{
+    padding:80px 90px;
+    background-color:white;
+    border-radius: 20px ;
+    box-shadow:5px 5px;
+    border:1px solid #000;
+  }
+  </style>
+
 {% endblock %}
 
 {#ここから表示したい情報を記載します。#}
 {% block page_content %}
+      <div class="register-page">
         <div class="page-header text-center">
             <h1>会員登録</h1>
         </div>
@@ -126,6 +137,8 @@
                 </div>
             </div>
         </div>
+      </div>
+
 {% endblock %}
 
 {#共通フッタとして追記したい情報を記載します。#}
