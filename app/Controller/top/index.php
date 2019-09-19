@@ -9,7 +9,7 @@ $app->get('/', function (Request $request, Response $response) {
     $data = [];
 
     // Render index view
-    return $this->view->render($response, 'search/list.twig', $data);
+    return $this->view->render($response, 'top-page/first-page.twig', $data);
 });
 
 // TOPページのコントローラ
