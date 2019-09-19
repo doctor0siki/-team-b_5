@@ -1,0 +1,19 @@
+body{
+  text-align:left;
+  margin:0;
+  padding:0;
+  background-color:#ffcc66;
+}
+
+.h1{
+  color:red;
+}
+
+.post{
+  background-color:white;
+}
+
+.flex{
+  display: -webkit-flex;
+  display: flex;
+}
