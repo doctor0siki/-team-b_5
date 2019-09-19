@@ -2,57 +2,80 @@
 {% extends "layout/layout.twig" %}
 
 {#HTMLのタイトルを定義します。#}
-{% block title %}商品一覧{% endblock %}
+{% block title %}投稿{% endblock %}
 
-{# このページに適用させたいスタイルシートを指定します #}
+{# 適用させたいスタイルシートのパスを指定します #}
 {% block header_scripts_add %}
+    {# 背景動画を表示させるスタイルを読み込みます。#}
+    {#}<link href="../../../public/assets/css/post.css" rel="stylesheet" > #}
+    <style>
+    .post{
+      padding:70px 50px;
+      background-color:white;
+      border-radius: 20px ;
+      box-shadow:5px 5px;
+      border:1px solid #000;
+    }
+
+    .flex{
+      display: -webkit-flex;
+      display: flex;
+    }
+    </style>
 {% endblock %}
 
 {#ここから表示したい情報を記載します。#}
 {% block page_content %}
-
-
-    <div class="page-header text-center">
-        <h1>商品一覧</h1>
-    </div>
-    <div class="row">
-        <!-- Boostrapのテーブルタグについては、https://cccabinet.jpn.org/bootstrap4/content/tables 参照 -->
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead class="thead-light">
-                <tr>
-                    <th scope="col">写真</th>
-                    <th scope="col">商品名</th>
-                    <th scope="col">特徴</th>
-                    <th scope="col">価格</th>
-                </tr>
-                </thead>
-                <tbody>
-                {# 取得した結果分ループする処理です#}
-                {# コントローラで指定した $data["result"] は Twigでは result として扱えます #}
-                {# for文でresultの中の一次元目の配列をループで回す形となります #}
-                {# ループ処理中の1行はrowの中に入りますので、このループ中はrow.カラム名で情報を表示することが可能です #}
-                {% for row in result %}
-
-
-
-                    <tr>
-                        <td class="align-middle" scope="col">
-                            <a href="/item/detail/{{ row.id }}">
-                                <img src="{{ row.image_url }}" width="200" class="img-fluid">
-                            </a>
-                        </td>
-                        <td class="align-middle" scope="col">
-                            <a href="/item/detail/{{ row.id }}">{{ row.name }}</a>
-                        </td>
-                        <td class="align-middle" scope="col">{{ row.spec }}</td>
-                        <td class="align-middle" scope="col">{{ row.price | number_format }}円</td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+  <body id="post_page">
+    <div class="row post">
+      <div class="col-sm-5 page-header">
+        <h1>投稿</h1>
+        <br><br>
+        画像ファイル
+        <input type="file" name="pic">
+      </div>
+        <div class="col-sm-6 offset-sm-1 status">
+          <br><br><br>
+            <form method="post" action="" class="form-group">
+                <div class="title">
+                  タイトル
+                  <input type="text" name="post_title" class="form-control">
+                </div>
+                <br>
+                <div class="sub_title">
+                  サブタイトル
+                  <input type="text" name="post_sub_title" class="form-control">
+                </div>
+                <br>
+                <div class="flex">
+                  <div class="col-sm-5">
+                    <div class="category">
+                      カテゴリ
+                      <input type="text" name="post_category" class="form-control">
+                    </div>
+                  </div>
+                  <br>
+                  <div class="col-sm-5 offset-sm-1">
+                    <div class="pref">
+                      都道府県
+                      <input type="text" name="post_pref" class="form-control">
+                    </div>
+                  </div>
+                </div>
+                <br>
+                <div class="content">
+                  内容
+                  <textarea name="content" rows"5" class="form-control"></textarea>
+                </div>
+                <br>
+                <div class="post_submit">
+                    <input type="submit" name="submit_add_post" value="投稿" class="btn btn-primary btn-block">
+                </div>
+            </form>
         </div>
     </div>
+  </body>
+
 {% endblock %}
 
 {#共通フッタとして追記したい情報を記載します。#}
