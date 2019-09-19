@@ -1,0 +1,23 @@
+{#レイアウトを継承します#}
+{% extends "layout/layout.twig" %}
+{#HTMLのタイトルを定義します。#}
+{% block title %}TOP{% endblock %}
+{# 適用させたいスタイルシートのパスを指定します #}
+{% block header_scripts_add %}
+   {# 背景動画を表示させるスタイルを読み込みます。#}
+   <link href="/assets/css/video.css" rel="stylesheet">
+{% endblock %}
+{#ここから表示したい情報を記載します。#}
+{% block page_content %}
+<form>
+<p>フリーワード検索</p>
+<input type ="free-word" placeholder="料理屋・地酒屋・ワーキングスペース">
+<input type="submit" value="検索">
+
+<select name = "category" size = "1">
+  <option value="restaurant">郷土料理店</option>
+  <option value="bar">地酒店</option>
+  <option value="working-space">ワーキングスペース</option>
+  <option value="cafe">カフェ</option>
+</select>
+{% endblock %}
