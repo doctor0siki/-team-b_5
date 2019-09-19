@@ -1,23 +1,41 @@
 {#レイアウトを継承します#}
 {% extends "layout/layout.twig" %}
+
 {#HTMLのタイトルを定義します。#}
-{% block title %}TOP{% endblock %}
-{# 適用させたいスタイルシートのパスを指定します #}
+{% block title %}商品一覧{% endblock %}
+
+{# このページに適用させたいスタイルシートを指定します #}
 {% block header_scripts_add %}
-   {# 背景動画を表示させるスタイルを読み込みます。#}
-   <link href="/assets/css/video.css" rel="stylesheet">
 {% endblock %}
+
 {#ここから表示したい情報を記載します。#}
 {% block page_content %}
-<form>
-<p>フリーワード検索</p>
-<input type ="free-word" placeholder="料理屋・地酒屋・ワーキングスペース">
-<input type="submit" value="検索">
-
-<select name = "category" size = "1">
-  <option value="restaurant">郷土料理店</option>
-  <option value="bar">地酒店</option>
-  <option value="working-space">ワーキングスペース</option>
-  <option value="cafe">カフェ</option>
-</select>
+                {# 取得した結果分ループする処理です#}
+                {# コントローラで指定した $data["result"] は Twigでは result として扱えます #}
+                {# for文でresultの中の一次元目の配列をループで回す形となります #}
+                {# ループ処理中の1行はrowの中に入りますので、このループ中はrow.カラム名で情報を表示することが可能です #}
+<form action="/search">
+  <input type="search" name="word" value="{{word}}"/>
+  <button>push</button>
+</form>
+                {% if result==null%}
+                  検索結果ないdesu
+                {% else %}
+                {% for row in result %}
+                <h3>
+                  title:{{row.title}}
+                </h3>
+                <div>
+                  detail:{{row.detail|nl2br}}
+                </div>
+                <br />
+                {% endfor %}
+                {% endif %}
+                </tbody>
+            </table>
+        </div>
+    </div>
 {% endblock %}
+
+{#共通フッタとして追記したい情報を記載します。#}
+{% block footer_scripts_add %}{% endblock %}
