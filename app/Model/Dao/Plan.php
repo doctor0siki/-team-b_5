@@ -37,7 +37,7 @@ class Plan extends Dao
 
         //全件取得するクエリを作成
         $sql = "select * from plan where `title` like :word
-                                      or `sub-title` like :word
+                                      or `sub_title` like :word
                                       or `detail` like :word";
        if($data["cat_code"]){
          $sql.=" or cat_code=:cat_code";
