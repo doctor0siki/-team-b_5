@@ -6,22 +6,17 @@ use Model\Dao\Plan;
 
 // TOPページのコントローラ
 $app->get('/post', function (Request $request, Response $response) {
-dd("aaaaa");
-
-
-    $result = $plan->search_plan($data);
 
     // Render index view
-    return $this->view->render($response, 'post/input.twig', $data);
+    return $this->view->render($response, 'post/add.twig', $data);
 });
 
-$app->get('/post/done', function (Request $request, Response $response) {
-dd("aaaaa");
+$app->post('/post/done', function (Request $request, Response $response) {
 
     $data = $request->getParsedBody();
-    
-    $result = $plan->search_plan($data);
+    $plan=new Plan($this->db);
+    $id = $plan->insert($data);
 
-    // Render index view
-    return $this->view->render($response, 'post/input.twig', $data);
+   // Render index view
+    return $this->view->render($response, 'post/done.twig', $data);
 });
