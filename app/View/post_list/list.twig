@@ -18,7 +18,7 @@
 
 .card-img-top{
   width: 500px;
-  height: 300px;
+  height: auto;
 }
 
 .btn-info{
@@ -40,15 +40,14 @@
                   <div class="row">
                     {% for row in result %}
                       <div class="card">
-                          <img src="https://dummyimage.com/320x240/ccc/fff.png&text=img1" class="card-img-top" alt="...">
+                          <img src="{{row.img_url}}" class="card-img-top" alt="...">
                           <div class="card-body">
                               <h5 class="card-title">{{row.title}}</h5>
                               <p class="card-text">{{row.sub_title}}</p>
                               <p class="card-text"><i class="fas fa-map-pin"></i>{{row.place}}</p>
                               <p class="card-text">{{row.create_date|date("Y年 m月 d日")}}</p>
                               <button type="button" class="btn btn-primary countup" id="{{ row.id }}"><i class="fas fa-thumbs-up"></i>　{{row.good}}</button>
-                              <button type="button" class="btn btn-outline-dark">comment</button>
-                              <button type="button" class="btn btn-info">Info</button>
+                              <a href="/post_list/{{row.id}}" class="btn btn-info">内容の詳細を見る</a>
                           </div>
                       </div>
                       {% if loop.index %2 == 0 %}
