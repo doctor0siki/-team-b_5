@@ -36,17 +36,17 @@ class Plan extends Dao
     {
 
         //全件取得するクエリを作成
-        $sql = "select * from plan where `title` like :word
+        $sql = "select * from plan where (`title` like :word
                                       or `sub_title` like :word
-                                      or `detail` like :word";
-       if(isset($data["cat_code"])){
-         $sql.=" or cat_code=:cat_code";
+                                      or `detail` like :word)";
+                                      
+       if(isset($data["cat_code"])&& $data["cat_code"]){
+         $sql.=" and cat_code=:cat_code";
        }
 
-       if(isset ($data["place"])){
-         $sql.=" or place like :place ";
+       if(isset ($data["place"]) && $data["place"]){
+         $sql.=" and place like :place ";
        }
-
 
 
         // SQLをプリペア
@@ -87,7 +87,7 @@ class Plan extends Dao
     {
 
         //全件取得するクエリを作成
-        $sql = "select * from plan";
+        $sql = "select * from plan order by create_date DESC";
 
         // SQLをプリペア
         $statement = $this->db->prepare($sql);

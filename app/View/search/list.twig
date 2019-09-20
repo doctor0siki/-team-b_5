@@ -18,6 +18,9 @@
     border:1px solid #000;
   }
 
+.random{
+  width: 10px;
+}
 </style>
 {% endblock %}
 {#ここから表示したい情報を記載します。#}
@@ -26,12 +29,10 @@
 <div class="search-page">
 <div class = "search-wrapper">
   <a>フリーワード検索</a>
-<nav class="navbar navbar-light bg-light">
   <form class="form-inline">
-    <input class="form-control mr-sm-2" type="text" placeholder="料理店名・地酒屋など">
+    <input class="form-control mr-sm-2 random" type="text" placeholder="料理店名・地酒屋など">
     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
   </form>
-</nav>
 </div>
     <div class="form-group prefecture">
       <div class="search-category">

@@ -47,7 +47,7 @@ $app->get('/post_list', function (Request $request, Response $response) {
 
     $data = $request->getQueryParams();
     $plan = new Plan($this->db);
-    $data["result"] = $plan->select_plan();
+    $data["result"] = $plan->search_plan($data);
 
     return $this->view->render($response, 'post_list/list.twig', $data);
 });
