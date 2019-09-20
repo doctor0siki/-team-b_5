@@ -37,27 +37,25 @@
             <a>フリーワード検索</a>
             <nav class="navbar navbar-light bg-light">
                 <form class="form-inline">
-                    <input class="form-control mr-sm-2" type="text" placeholder="料理店名・地酒屋など">
+                    <input class="form-control mr-sm-2" type="text" name="word" placeholder="料理店名・地酒屋など" value="{{word}}">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
-                </form>
+
             </nav>
         </div>
         <div class="form-group prefecture">
             <div class="search-category">
                 <p>カテゴリー検索</p>
             </div>
-            <form class="form-inline">
-                <input class="form-control mr-sm-2" type="text" placeholder="都道府県名">
+                <input class="form-control mr-sm-2" type="text" value="{{place}}" name="place" placeholder="都道府県名">
                 <span style="padding: 50px; font-size: 50px;">×</span>
-                <select class="form-control mr-sm-2" name="cat_code" type="search" autocomplete="on" list="list" 　placeholder="カテゴリー">
+                <select class="form-control mr-sm-2" name="cat_code" type="search" autocomplete="on"  list="list" 　placeholder="カテゴリー">
                     <!-- 候補を表示 -->
-                    <option selected>選択してください
-                    <option value="1">郷土料理
-                    <option value="2">地酒が飲めるお店
-                    <option value="3">ワーキングスペース
-                    <option value="4">カフェ
+                    <option selected value="">選択してください
+                    <option value="1" {% if cat_code==1 %} selected {% endif %}>郷土料理
+                    <option value="2"{% if cat_code==2 %} selected {% endif %}>地酒が飲めるお店
+                    <option value="3"{% if cat_code==3 %} selected {% endif %}>ワーキングスペース
+                    <option value="4"{% if cat_code==4 %} selected {% endif %}>カフェ
                 </select>
-                <input type="submit" value="検索">
             </form>
         </div>
         <div class="container">
