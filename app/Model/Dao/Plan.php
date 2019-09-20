@@ -87,7 +87,7 @@ class Plan extends Dao
     {
 
         //全件取得するクエリを作成
-        $sql = "select * from plan";
+        $sql = "select * from plan order by create_date DESC";
 
         // SQLをプリペア
         $statement = $this->db->prepare($sql);
