@@ -128,4 +128,19 @@ class Plan extends Dao
 
 
     }
+
+    public function get_detailplan($planid){
+      $sql = "select * from plan left join user on plan.user_id = user.id where plan.id=:planid";
+      // SQLをプリペア
+      $statement = $this->db->prepare($sql);
+
+      $statement->bindValue(":planid", $planid, PDO::PARAM_INT);
+      //SQLを実行
+      $statement->execute();
+
+      $result = $statement->fetch();
+
+      return $result;
+
+    }
 }

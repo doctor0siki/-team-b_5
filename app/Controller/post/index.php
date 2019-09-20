@@ -13,3 +13,16 @@ $app->get('/post_list', function (Request $request, Response $response) {
     // Render index view
     return $this->view->render($response, 'post_list/list.twig', $data);
 });
+
+
+$app->get('/post_list/{plan_id}', function (Request $request, Response $response, $args) {
+    // $data = $request->getQueryParams();
+    // $plan = new Plan($this->db);
+    // $data["result"] = $plan->select_plan();
+    // Render index view
+    $data = [];
+    $plan = new Plan($this->db);
+    $data["result"] = $plan->get_detailplan($args["plan_id"]);
+
+    return $this->view->render($response, 'post_list/detail.twig', $data);
+});
