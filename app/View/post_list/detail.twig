@@ -52,43 +52,44 @@
 {% block page_content %}
     <div class="post-detail">
         <div class="page-header">
-            <h1>投稿詳細</h1>
+            <h1>{{ result.title }}</h1>
         </div>
         <br>
         <div class="row">
             <div class="col-sm-5">
                 <div class="name">
-                    <div class="picture0">
+                    <div class="picture0">　
                         <img src="{{ result.icon_img }}">
                     </div>
-                    <h2>{{ result.nickname }}</h2>
+                    　
+                    <p>{{ result.nickname }} さん</p>
                 </div>
                 <br>
                 <div class="picture1">
                     <img src="{{ result.img_url }}">
                 </div>
-
             </div>
             <div class="col-sm-7">
                 <br> <br>
-                <h3>{{ result.title }}<br><br>
-                    サブタイトル：{{ result.sub_title }}<br><br>
-                    カテゴリ:
-                    {% if result.cat_code == 1 %}
-                        郷土料理
-                    {% endif %}
-                    {% if result.cat_code == 2 %}
-                        地酒屋
-                    {% endif %}
-                    {% if result.cat_code == 3 %}
-                        ワークスペース
-                    {% endif %}
-                    <br><br/>
+                <h3>
+                    <small>{{ result.sub_title }}</small>
                 </h3>
+                <br>
+                {% if result.cat_code == 1 %}
+                    <div class="btn btn-sm btn-outline-primary ">郷土料理</div>
+                {% endif %}
+                {% if result.cat_code == 2 %}
+                <div class="btn btn-sm btn-outline-primary ">地酒屋</div>
+                {% endif %}
+                {% if result.cat_code == 3 %}
+                    <div class="btn btn-sm btn-outline-primary ">ワークスペース</div>
+                {% endif %}
+                <br><br/>
+                {{ result.detail | nl2br }}
             </div>
         </div>
         <br><br>
-        <a href="/comment/{{ result.plan_id }}" class="btn btn-success">コメントを書く</a>
+        <a href="/comment/{{ result.plan_id }}" class="btn btn-success form-control">コメントを書く</a>
         <br><br>
         <h5>コメント</h5>
         {% for col in comment %}
@@ -98,13 +99,12 @@
                         <div class="picture2">
                             <img src="{{ col.icon_img }}"/>
                         </div>
-                        <h4>{{ col.nickname }}</h4>
+                        <span>　{{ col.nickname }}さん</span>
                     </div>
                     <br>
 
                     <p>{{ col.text|nl2br }}</p>
                     <br>
-
                     </p>
                     <br>
                 </div>
