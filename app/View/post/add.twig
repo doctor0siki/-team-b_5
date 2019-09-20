@@ -31,31 +31,31 @@
         <div class="col-sm-5 page-header">
             <h1>投稿</h1>
             <br><br>
-            <img src="https://pbs.twimg.com/profile_images/1163113959580246016/ayT0WjfG_400x400.jpg" id="preview" width="100%">
+            <img src="https://dummyimage.com/320x240/ccc/fff.png&text=img1" id="preview" width="100%">
         </div>
         <div class="col-sm-6 offset-sm-1 status">
             <br><br><br>
             <form method="post" action="/post/done" class="form-group">
                 <div class="title">
                     タイトル
-                    <input type="text" name="title" class="form-control">
+                    <input type="text" name="title" class="form-control" required>
                 </div>
                 <br>
                 <div class="sub_title">
                     サブタイトル
-                    <input type="text" name="sub_title" class="form-control">
+                    <input type="text" name="sub_title" class="form-control" required>
                 </div>
                 <br>
                 <div class="sub_title">
                     画像ファイルURL
-                    <input type="text" name="img_url" class="form-control" id="img_url">
+                    <input type="url" name="img_url" class="form-control" id="img_url" required>
                 </div>
                 <br>
                 <div class="flex">
                     <div class="col-sm-5">
                         <div class="category">
                             カテゴリ
-                            <select class="form-control mr-sm-2" name="cat_code" type="search" autocomplete="on" list="list" 　placeholder="カテゴリー">
+                            <select class="form-control mr-sm-2" name="cat_code" type="search" autocomplete="on" list="list" 　placeholder="カテゴリー" required>
                                 <!-- 候補を表示 -->
                                 <option selected>選択してください
                                 <option value="1">郷土料理
@@ -69,14 +69,14 @@
                     <div class="col-sm-5 offset-sm-1">
                         <div class="pref">
                             都道府県
-                            <input type="text" name="place" class="form-control">
+                            <input type="text" name="place" class="form-control" required>
                         </div>
                     </div>
                 </div>
                 <br>
                 <div class="content">
                     内容
-                    <textarea name="detail" rows="5" class="form-control"></textarea>
+                    <textarea name="detail" rows="5" class="form-control" required></textarea>
                 </div>
                 <br>
                 <div class="post_submit">
