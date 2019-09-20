@@ -10,11 +10,20 @@
     margin-top:50px;
     margin-bottom: -50px;
   }
+  .search-page{
+    padding:80px 90px;
+    background-color:white;
+    border-radius: 20px ;
+    box-shadow:5px 5px;
+    border:1px solid #000;
+  }
+
 </style>
 {% endblock %}
 {#ここから表示したい情報を記載します。#}
 {% block page_content %}
 
+<div class="search-page">
 <div class = "search-wrapper">
   <a>フリーワード検索</a>
 <nav class="navbar navbar-light bg-light">
@@ -44,8 +53,10 @@
     </div>
    </select>
 
-   <input type="submit" value="検索">
-</form>
+   <input type="submit" value="検索" class="btn btn-outline-success my-2 my-sm-0">
 
+
+</form>
+</div>
 
 {% endblock %}
