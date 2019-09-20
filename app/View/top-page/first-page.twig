@@ -8,6 +8,29 @@
    <style>
    .top-wrapper{height: 500px; background-image: url('/assets/img/2bf72e45310b09c0ad25bd30221e2e5f_s.jpg');  background-size: cover; color: black; text-align: center;}
 
+    .top-wrapper{
+      margin-top:-100px;
+      padding-bottom:20px;
+    }
+
+    .pr-title{
+      color:white;
+      background-color:rgba(80,80,80,0.5);
+    }
+
+    .pr-title span{
+        font-family:Times New Roman;
+        font-size:150%;
+    }
+
+
+    .btn2{
+      margin-top:80px;
+    }
+
+      .container{
+        margin-top:70px;
+      }
 
        .card {
            width: 500px;
@@ -35,12 +58,17 @@
 {% block page_content %}
 <div class = "top-wrapper">
   <br><br><br><br><br><br><br>
-  <h1>This service is for "Bleisures"</h1>
-  <h2>You must enjoy your business trip as the leisure</h2>
-  <p>あなたの「出張」に「ほのかな楽しみ」を。</p>
+  <div class="pr-title">
+    <br><br>
+    <h1>This service is for <span>"Bleisures"</span></h1>
+    <h2>You must enjoy your business trip as the leisure</h2>
+    <p>あなたの「出張」に「ほのかな楽しみ」を。</p>
+    <br><br>
+  </div>
+
 </div>
 
-<div class = "btn-wrapper">
+<div class = "btn-wrapper btn2">
   <a href='/post_list' class="btn btn-info btn-lg btn-block">Search your plan</a>
 </div>
 
