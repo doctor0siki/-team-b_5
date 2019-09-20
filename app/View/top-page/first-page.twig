@@ -7,7 +7,28 @@
    {# 背景動画を表示させるスタイルを読み込みます。#}
    <style>
    .top-wrapper{height: 500px; background-image: url('/assets/img/2bf72e45310b09c0ad25bd30221e2e5f_s.jpg');  background-size: cover; color: black; text-align: center;}
+
+
+       .card {
+           width: 500px;
+           margin-bottom: 12px;
+           margin-right: 12px;
+       }
+
+       .card-img-top {
+           width: 500px;
+           height: auto;
+       }
+
+       .btn-info {
+           position: absolute;
+           right: 5px;
+           bottom: 13px;
+       }
    </style>
+
+
+
 {% endblock %}
 
 {#ここから表示したい情報を記載します。#}
@@ -20,8 +41,31 @@
 </div>
 
 <div class = "btn-wrapper">
-  <a href='/post_list' class="btn btn-info btn-lg btn-block">Search your fan</a>
+  <a href='/post_list' class="btn btn-info btn-lg btn-block">Search your plan</a>
 </div>
+
+<div class="container">
+    <div class="row">
+        {% for row in result %}
+        <div class="card">
+            <img src="{{ row.img_url }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{ row.title }}</h5>
+                <p class="card-text">{{ row.sub_title }}</p>
+                <p class="card-text"><i class="fas fa-map-pin"></i>{{ row.place }}</p>
+                <p class="card-text">{{ row.create_date|date("Y年 m月 d日") }}</p>
+                <button type="button" class="btn btn-primary countup" id="{{ row.id }}"><i class="fas fa-thumbs-up"></i>　{{ row.good }}</button>
+                <a href="/post_list/{{ row.id }}" class="btn btn-info">内容の詳細を見る</a>
+            </div>
+        </div>
+        {% if loop.index %2 == 0 %}
+    </div>
+    <div class="row">
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
 {% endblock %}
 
 {% block footer_scripts_add %}{% endblock %}

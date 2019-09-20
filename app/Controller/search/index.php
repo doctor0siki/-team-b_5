@@ -11,5 +11,5 @@ $app->get('/search', function (Request $request, Response $response) {
     $plan = new Plan($this->db);
     $data["result"] = $plan->search_plan($data);
     // Render index view
-    return $this->view->render($response, 'search/list.twig', $data);
+    return $this->view->render($response, 'post_list/list.twig', $data);
 });
