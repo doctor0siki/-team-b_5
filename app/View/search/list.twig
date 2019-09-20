@@ -1,41 +1,45 @@
 {#レイアウトを継承します#}
 {% extends "layout/layout.twig" %}
-
 {#HTMLのタイトルを定義します。#}
-{% block title %}商品一覧{% endblock %}
-
-{# このページに適用させたいスタイルシートを指定します #}
+{% block title %}TOP{% endblock %}
+{# 適用させたいスタイルシートのパスを指定します #}
 {% block header_scripts_add %}
+   {# 背景動画を表示させるスタイルを読み込みます。#}
+   <link href="/assets/css/search-page.css" rel="stylesheet">
 {% endblock %}
-
 {#ここから表示したい情報を記載します。#}
 {% block page_content %}
-                {# 取得した結果分ループする処理です#}
-                {# コントローラで指定した $data["result"] は Twigでは result として扱えます #}
-                {# for文でresultの中の一次元目の配列をループで回す形となります #}
-                {# ループ処理中の1行はrowの中に入りますので、このループ中はrow.カラム名で情報を表示することが可能です #}
-<form action="/search">
-  <input type="search" name="word" value="{{word}}"/>
-  <button>push</button>
-</form>
-                {% if result==null%}
-                  検索結果ないdesu
-                {% else %}
-                {% for row in result %}
-                <h3>
-                  title:{{row.title}}
-                </h3>
-                <div>
-                  detail:{{row.detail|nl2br}}
-                </div>
-                <br />
-                {% endfor %}
-                {% endif %}
-                </tbody>
-            </table>
-        </div>
-    </div>
-{% endblock %}
+<div class = "search-wrapper">
+  <a>フリーワード検索</a>
+<nav class="navbar navbar-light bg-light">
+  <form class="form-inline">
+    <input class="form-control mr-sm-2" type="text" placeholder="料理店名・地酒屋など">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
+  </form>
+</nav>
+</div>
 
-{#共通フッタとして追記したい情報を記載します。#}
-{% block footer_scripts_add %}{% endblock %}
+
+
+    <div class="form-group prefecture">
+    <form class="form-inline">
+    <input class="form-control mr-sm-2" type="text" placeholder="都道府県名">
+
+
+    <span style = "padding: 50px; font-size: 50px;">×</span>
+
+    <select class="form-control mr-sm-2" name = "cat_code" type="search" autocomplete="on" list="list"　placeholder="カテゴリー">
+<!-- 候補を表示 -->
+    <option selected>選択してください
+    <option value= "1">郷土料理
+    <option value="2">地酒が飲めるお店
+    <option value="3">ワーキングスペース
+    <option value="4">カフェ
+    </div>
+   </select>
+
+   <input type="submit" value="検索">
+
+
+</form>
+{% endblock %}
