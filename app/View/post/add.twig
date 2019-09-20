@@ -9,81 +9,95 @@
     {# 背景動画を表示させるスタイルを読み込みます。#}
     {#}<link href="../../../public/assets/css/post.css" rel="stylesheet" > #}
     <style>
-    .post{
-      padding:70px 50px;
-      background-color:white;
-      border-radius: 20px ;
-      box-shadow:5px 5px;
-      border:1px solid #000;
-    }
+        .post {
+            padding: 70px 50px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 5px 5px;
+            border: 1px solid #000;
+        }
 
-    .flex{
-      display: -webkit-flex;
-      display: flex;
-    }
+        .flex {
+            display: -webkit-flex;
+            display: flex;
+        }
     </style>
 {% endblock %}
 
 {#ここから表示したい情報を記載します。#}
 {% block page_content %}
-  <body id="post_page">
+    <body id="post_page">
     <div class="row post">
-      <div class="col-sm-5 page-header">
-        <h1>投稿</h1>
-        <br><br>
-        画像ファイル
-        <input type="file" name="pic">
-      </div>
+        <div class="col-sm-5 page-header">
+            <h1>投稿</h1>
+            <br><br>
+            <img src="https://pbs.twimg.com/profile_images/1163113959580246016/ayT0WjfG_400x400.jpg" id="preview" width="100%">
+        </div>
         <div class="col-sm-6 offset-sm-1 status">
-          <br><br><br>
-            <form method="post" action="" class="form-group">
+            <br><br><br>
+            <form method="post" action="/post/done" class="form-group">
                 <div class="title">
-                  タイトル
-                  <input type="text" name="post_title" class="form-control">
+                    タイトル
+                    <input type="text" name="title" class="form-control">
                 </div>
                 <br>
                 <div class="sub_title">
-                  サブタイトル
-                  <input type="text" name="post_sub_title" class="form-control">
+                    サブタイトル
+                    <input type="text" name="sub_title" class="form-control">
+                </div>
+                <br>
+                <div class="sub_title">
+                    画像ファイルURL
+                    <input type="text" name="img_url" class="form-control" id="img_url">
                 </div>
                 <br>
                 <div class="flex">
-                  <div class="col-sm-5">
-                    <div class="category">
-                      カテゴリ
-                      <select class="form-control mr-sm-2" name = "cat_code" type="search" autocomplete="on" list="list"　placeholder="カテゴリー">
-                  <!-- 候補を表示 -->
-                      <option selected>選択してください
-                      <option value= "1">郷土料理
-                      <option value="2">地酒が飲めるお店
-                      <option value="3">ワーキングスペース
-                      <option value="4">カフェ
-                     </select>
+                    <div class="col-sm-5">
+                        <div class="category">
+                            カテゴリ
+                            <select class="form-control mr-sm-2" name="cat_code" type="search" autocomplete="on" list="list" 　placeholder="カテゴリー">
+                                <!-- 候補を表示 -->
+                                <option selected>選択してください
+                                <option value="1">郷土料理
+                                <option value="2">地酒が飲めるお店
+                                <option value="3">ワーキングスペース
+                                <option value="4">カフェ
+                            </select>
+                        </div>
                     </div>
-                  </div>
-                  <br>
-                  <div class="col-sm-5 offset-sm-1">
-                    <div class="pref">
-                      都道府県
-                      <input type="text" name="post_pref" class="form-control">
+                    <br>
+                    <div class="col-sm-5 offset-sm-1">
+                        <div class="pref">
+                            都道府県
+                            <input type="text" name="place" class="form-control">
+                        </div>
                     </div>
-                  </div>
                 </div>
                 <br>
                 <div class="content">
-                  内容
-                  <textarea name="content" rows"5" class="form-control"></textarea>
+                    内容
+                    <textarea name="detail" rows="5" class="form-control"></textarea>
                 </div>
                 <br>
                 <div class="post_submit">
-                    <input type="submit" name="submit_add_post" value="投稿" class="btn btn-primary btn-block">
+                    <input type="submit" value="投稿" class="btn btn-primary btn-block">
                 </div>
             </form>
         </div>
     </div>
-  </body>
+    </body>
 
 {% endblock %}
 
 {#共通フッタとして追記したい情報を記載します。#}
-{% block footer_scripts_add %}{% endblock %}
+{% block footer_scripts_add %}
+    <script>
+        $("#img_url").change(function () {
+
+            $("#preview").attr("src", $("#img_url").val());
+
+        })
+
+    </script>
+
+{% endblock %}
