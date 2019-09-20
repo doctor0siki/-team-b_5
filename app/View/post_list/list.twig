@@ -6,114 +6,99 @@
 
 {# このページに適用させたいスタイルシートを指定します #}
 {% block header_scripts_add %}
-<!-- <link rel="stylesheet"  href="post_list.css"> -->
+    <!-- <link rel="stylesheet"  href="post_list.css"> -->
 
-<style>
+    <style>
 
-.card{
-  width:500px;
-  margin-bottom: 12px;
-  margin-right: 12px;
-}
+        .card {
+            width: 500px;
+            margin-bottom: 12px;
+            margin-right: 12px;
+        }
 
-.card-img-top{
-  width: 500px;
-  height: auto;
-}
+        .card-img-top {
+            width: 500px;
+            height: auto;
+        }
 
-.btn-info{
-  position: absolute;
-  right: 5px;
-  bottom: 13px;
-}
-</style>
+        .btn-info {
+            position: absolute;
+            right: 5px;
+            bottom: 13px;
+        }
+    </style>
 
 {% endblock %}
 
 {#ここから表示したい情報を記載します。#}
 {% block page_content %}
-                {# 取得した結果分ループする処理です#}
-                {# コントローラで指定した $data["result"] は Twigでは result として扱えます #}
-                {# for文でresultの中の一次元目の配列をループで回す形となります #}
-                {# ループ処理中の1行はrowの中に入りますので、このループ中はrow.カラム名で情報を表示することが可能です #}
-                <div class="container">
+    <div class="container">
+        <div class="search-wrapper">
+            <a>フリーワード検索</a>
+            <nav class="navbar navbar-light bg-light">
+                <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="text" placeholder="料理店名・地酒屋など">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
+                </form>
+            </nav>
+        </div>
+        <div class="form-group prefecture">
+            <div class="search-category">
+                <p>カテゴリー検索</p>
+            </div>
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="text" placeholder="都道府県名">
+                <span style="padding: 50px; font-size: 50px;">×</span>
+                <select class="form-control mr-sm-2" name="cat_code" type="search" autocomplete="on" list="list" 　placeholder="カテゴリー">
+                    <!-- 候補を表示 -->
+                    <option selected>選択してください
+                    <option value="1">郷土料理
+                    <option value="2">地酒が飲めるお店
+                    <option value="3">ワーキングスペース
+                    <option value="4">カフェ
+                </select>
+                <input type="submit" value="検索">
+            </form>
+        </div>
+        <div class="container">
+            <div class="row">
+                {% for row in result %}
+                <div class="card">
+                    <img src="{{ row.img_url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ row.title }}</h5>
+                        <p class="card-text">{{ row.sub_title }}</p>
+                        <p class="card-text"><i class="fas fa-map-pin"></i>{{ row.place }}</p>
+                        <p class="card-text">{{ row.create_date|date("Y年 m月 d日") }}</p>
+                        <button type="button" class="btn btn-primary countup" id="{{ row.id }}"><i class="fas fa-thumbs-up"></i>　{{ row.good }}</button>
+                        <a href="/post_list/{{ row.id }}" class="btn btn-info">内容の詳細を見る</a>
+                    </div>
+                </div>
+                {% if loop.index %2 == 0 %}
+            </div>
+            <div class="row">
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
 
-                  <div class = "search-wrapper">
-                    <a>フリーワード検索</a>
-                  <nav class="navbar navbar-light bg-light">
-                    <form class="form-inline">
-                      <input class="form-control mr-sm-2" type="text" placeholder="料理店名・地酒屋など">
-                      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">検索</button>
-                    </form>
-                  </nav>
-                  </div>
-                      <div class="form-group prefecture">
-                        <div class="search-category">
-                            <p>カテゴリー検索</p>
-                        </div>
-                      <form class="form-inline">
-                      <input class="form-control mr-sm-2" type="text" placeholder="都道府県名">
-
-
-                      <span style = "padding: 50px; font-size: 50px;">×</span>
-
-                      <select class="form-control mr-sm-2" name = "cat_code" type="search" autocomplete="on" list="list"　placeholder="カテゴリー">
-                  <!-- 候補を表示 -->
-                      <option selected>選択してください
-                      <option value= "1">郷土料理
-                      <option value="2">地酒が飲めるお店
-                      <option value="3">ワーキングスペース
-                      <option value="4">カフェ
-                      </div>
-                     </select>
-
-                     <input type="submit" value="検索">
-                  </form>
-
-
-                  <div class="row">
-                    {% for row in result %}
-                      <div class="card">
-                          <img src="https://dummyimage.com/320x240/ccc/fff.png&text=img1" class="card-img-top" alt="...">
-                  <div class="row">
-                    {% for row in result %}
-                      <div class="card">
-                          <img src="{{row.img_url}}" class="card-img-top" alt="...">
-                          <div class="card-body">
-                              <h5 class="card-title">{{row.title}}</h5>
-                              <p class="card-text">{{row.sub_title}}</p>
-                              <p class="card-text"><i class="fas fa-map-pin"></i>{{row.place}}</p>
-                              <p class="card-text">{{row.create_date|date("Y年 m月 d日")}}</p>
-                              <button type="button" class="btn btn-primary countup" id="{{ row.id }}"><i class="fas fa-thumbs-up"></i>　{{row.good}}</button>
-                              <a href="/post_list/{{row.id}}" class="btn btn-info">内容の詳細を見る</a>
-                          </div>
-                      </div>
-                      {% if loop.index %2 == 0 %}
-                        </div>
-                        <div class="row">
-                      {% endif %}
-                    {% endfor %}
-                        </div>
-                  </div>
-
-
-
+    </div>
 {% endblock %}
 
 {#共通フッタとして追記したい情報を記載します。#}
 {% block footer_scripts_add %}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script>
-        $(function(){
-            $('.countup').click(function(){
+        $(function () {
+            $('.countup').click(function () {
                 var target = $(this).attr('id')
                 $.ajax({
                     type: 'GET',
                     url: '/ajax', //post送信を受けとるphpファイル
-                    data: {"planid" :target }
-                }).done(function(data){
-                    $("#"+target).html('<i class="fas fa-thumbs-up"></i>　'+ data);
-                }).fail(function(msg) {
+                    data: {"planid": target}
+                }).done(function (data) {
+                    $("#" + target).html('<i class="fas fa-thumbs-up"></i>　' + data);
+                }).fail(function (msg) {
                     console.log('Ajax Error');
                 });
             });
