@@ -130,7 +130,7 @@ class Plan extends Dao
     }
 
     public function get_detailplan($planid){
-      $sql = "select * from plan left join user on plan.user_id = user.id where plan.id=:planid";
+      $sql = "select *,plan.id as plan_id from plan left join user on plan.user_id = user.id where plan.id=:planid";
       // SQLをプリペア
       $statement = $this->db->prepare($sql);
 

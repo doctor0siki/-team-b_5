@@ -6,112 +6,112 @@
 
 {# 適用させたいスタイルシートのパスを指定します #}
 {% block header_scripts_add %}
-<style>
-.post-detail{
-  padding:70px 50px;
-  background-color:white;
-  border-radius: 20px ;
-  box-shadow:5px 5px;
-  border:1px solid #000;
-}
+    <style>
+        .post-detail {
+            padding: 70px 50px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 5px 5px;
+            border: 1px solid #000;
+        }
 
-.name{
-  display:flex;
-  padding-top:20px;
-}
+        .name {
+            display: flex;
+            padding-top: 20px;
+        }
 
-.picture0 img {
-  width:50px;
-  height:50px;
-}
+        .picture0 img {
+            width: 50px;
+            height: 50px;
+        }
 
-.picture1 img {
-  width:200px;
-  height:200px;
-}
+        .picture1 img {
+            width: 200px;
+            height: 200px;
+        }
 
-.picture2 img {
-  width:30px;
-  height:30px;
-}
+        .picture2 img {
+            width: 30px;
+            height: 30px;
+        }
 
-.post-for-comment{
-  margin-left:100px;
-}
+        .post-for-comment {
+            margin-left: 100px;
+        }
 
-.border-bottom{
-    border-bottom: solid 1px #000;
-}
+        .border-bottom {
+            border-bottom: solid 1px #000;
+        }
 
 
-</style>
+    </style>
 
 {% endblock %}
 
 {#ここから表示したい情報を記載します。#}
 {% block page_content %}
-  <div class="post-detail">
-    <div class="page-header">
-      <h1>投稿詳細</h1>
-    </div>
-    <br>
-    <div class="row">
-      <div class="col-sm-5">
-        <div class="name">
-          <div class="picture0">
-            <img src="{{result.icon_img}}">
-          </div>
-          <h2>{{result.nickname}}</h2>
+    <div class="post-detail">
+        <div class="page-header">
+            <h1>投稿詳細</h1>
         </div>
         <br>
-        <div class="picture1">
-          <img src="{{result.img_url}}">
+        <div class="row">
+            <div class="col-sm-5">
+                <div class="name">
+                    <div class="picture0">
+                        <img src="{{ result.icon_img }}">
+                    </div>
+                    <h2>{{ result.nickname }}</h2>
+                </div>
+                <br>
+                <div class="picture1">
+                    <img src="{{ result.img_url }}">
+                </div>
+
+            </div>
+            <div class="col-sm-7">
+                <br> <br>
+                <h3>{{ result.title }}<br><br>
+                    サブタイトル：{{ result.sub_title }}<br><br>
+                    カテゴリ:
+                    {% if result.cat_code == 1 %}
+                        郷土料理
+                    {% endif %}
+                    {% if result.cat_code == 2 %}
+                        地酒屋
+                    {% endif %}
+                    {% if result.cat_code == 3 %}
+                        ワークスペース
+                    {% endif %}
+                    <br><br/>
+                </h3>
+            </div>
         </div>
+        <br><br>
+        <a href="/comment/{{ result.plan_id }}" class="btn btn-success">コメントを書く</a>
+        <br><br>
+        <h5>コメント</h5>
+        {% for col in comment %}
+            <div class="border-bottom">
+                <div class="post-for-comment">
+                    <div class="name">
+                        <div class="picture2">
+                            <img src="{{ col.icon_img }}"/>
+                        </div>
+                        <h4>{{ col.nickname }}</h4>
+                    </div>
+                    <br>
 
-      </div>
-      <div class="col-sm-7">
-        <br> <br>
-        <h3>{{result.title}}<br><br>
-            サブタイトル：{{result.sub_title}}<br><br>
-            カテゴリ:
-            {% if result.cat_code == 1 %}
-             郷土料理
-            {% endif %}
-            {% if result.cat_code == 2 %}
-             地酒屋
-            {% endif %}
-            {% if result.cat_code == 3 %}
-             ワークスペース
-            {% endif %}
-            <br><br />
-        </h3>
-      </div>
-    </div>
-<br><br>
-<a href="/comment/{{result.id}}" class="btn btn-success">コメントを書く</a>
-<br><br>
- <h5>コメント</h5>
-  {% for col in comment %}
-  <div class="border-bottom">
-  <div class="post-for-comment">
-    <div class="name">
-      <div class="picture2">
-        <img src="{{col.icon_img}}"/>
-      </div>
-      <h4>{{col.nickname}}</h4>
-    </div>
-    <br>
+                    <p>{{ col.text|nl2br }}</p>
+                    <br>
 
-    <p>{{col.text|nl2br}}</p>
-      <br>
-
-    </p>
-    <br>
-  </div>
-  </div>
-  {% endfor %}
+                    </p>
+                    <br>
+                </div>
+            </div>
+        {% endfor %}
     </div>
-</div>
+    </div>
 {% endblock %}
 
 {#共通フッタとして追記したい情報を記載します。#}
