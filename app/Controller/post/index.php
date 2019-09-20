@@ -3,6 +3,7 @@
 use Slim\Http\Request;
 use Slim\Http\Response;
 use Model\Dao\Plan;
+use Model\Dao\Comment;
 
 // 投稿ページのコントローラ
 $app->get('/post', function (Request $request, Response $response) {
@@ -57,7 +58,11 @@ $app->get('/post_list/{plan_id:[0-9]+}', function (Request $request, Response $r
 
     $data = [];
     $plan = new Plan($this->db);
+    $comment = new Comment($this->db);
+
     $data["result"] = $plan->get_detailplan($args["plan_id"]);
+    $data["comment"] = $comment->get_detailcomment($args["plan_id"]);
+
 
     return $this->view->render($response, 'post_list/detail.twig', $data);
 });
