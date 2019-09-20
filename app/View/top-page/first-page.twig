@@ -68,4 +68,23 @@
 
 {% endblock %}
 
-{% block footer_scripts_add %}{% endblock %}
+
+
+{% block footer_scripts_add %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    $(function () {
+        $('.countup').click(function () {
+            var target = $(this).attr('id')
+            $.ajax({
+                type: 'GET',
+                url: '/ajax', //post送信を受けとるphpファイル
+                data: {"planid": target}
+            }).done(function (data) {
+                $("#" + target).html('<i class="fas fa-thumbs-up"></i>　' + data);
+            }).fail(function (msg) {
+                console.log('Ajax Error');
+            });
+        });
+    });</script>
+{% endblock %}
