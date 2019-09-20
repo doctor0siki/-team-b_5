@@ -100,4 +100,32 @@ class Plan extends Dao
         return $statement->fetchall();
 
     }
+
+    public function add_good($planid){
+
+      $sql = "update plan set good=good+1 where id=:planid";
+            // SQLをプリペア
+      $statement = $this->db->prepare($sql);
+
+      $statement->bindValue(":planid", $planid, PDO::PARAM_INT);
+
+
+      //SQLを実行
+      $statement->execute();
+
+      $sql = "select * from plan where id=:planid";
+      // SQLをプリペア
+      $statement = $this->db->prepare($sql);
+
+      $statement->bindValue(":planid", $planid, PDO::PARAM_INT);
+      //SQLを実行
+      $statement->execute();
+
+      $result = $statement->fetch();
+
+
+      return $result["good"];
+
+
+    }
 }

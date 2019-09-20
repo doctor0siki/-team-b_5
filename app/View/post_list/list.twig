@@ -9,38 +9,25 @@
 <!-- <link rel="stylesheet"  href="post_list.css"> -->
 
 <style>
+
 .card{
-  height:180px;
-  width:450px;
-  margin-bottom: 10px;
-}
-.left{
+  width:500px;
+  margin-bottom: 12px;
+  margin-right: 12px;
 }
 
-.right{
-  background-color: blue
+.card-img-top{
+  width: 500px;
+  height: 300px;
 }
 
-.titleName{
-  font-size: 18px;
+.btn-info{
   position: absolute;
-  top: 40px;
+  right: 5px;
+  bottom: 13px;
 }
-
-.subtitleName{
-  font-size: 10px;
-  position: absolute;
-  bottom: 5px;
-  left: 30px;
-}
-
-.date{
-  font-size: 7px;
-  position: absolute;
-  bottom: 10px;
-}
-
 </style>
+
 {% endblock %}
 
 {#ここから表示したい情報を記載します。#}
@@ -49,52 +36,38 @@
                 {# コントローラで指定した $data["result"] は Twigでは result として扱えます #}
                 {# for文でresultの中の一次元目の配列をループで回す形となります #}
                 {# ループ処理中の1行はrowの中に入りますので、このループ中はrow.カラム名で情報を表示することが可能です #}
-                  <div class="container">
+                <div class="container">
+                  <div class="row">
                     {% for row in result %}
-                    <div class="row">
-                      <div class="col-12 col-md-6">
-                        <!-- ここからカード -->
-                        <div class="card card-left">
-                          <div class="container">
-                            <div class="row">
-                              <div class="col-2"><span><img src="eraiza.jpg"/></span></div>
-                              <div class="col-8">
-                                <div class="container">
-                                  <div class="row">
-                                    <div class="col-7">
-                                      <div class="titleName">{{row.title}}</div>
-                                      <div class="subtitleName">{{row.sub_title}}</div>
-                                    </div>
-                                    <div class="col-5">
-                                      <p class="place">{{row.place}}</p>
-                                      <p>{{row.create_date|date("Y年 m月 d日")}}</p>
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                              <div class="col-2"><button type="button" class="btn btn-primary">Like</button></div>
-                            </div>
+                      <div class="card">
+                          <img src="https://dummyimage.com/320x240/ccc/fff.png&text=img1" class="card-img-top" alt="...">
+                          <div class="card-body">
+                              <h5 class="card-title">{{row.title}}</h5>
+                              <p class="card-text">{{row.sub_title}}</p>
+                              <p class="card-text"><i class="fas fa-map-pin"></i>{{row.place}}</p>
+                              <p class="card-text">{{row.create_date|date("Y年 m月 d日")}}</p>
+                              <button type="button" class="btn btn-primary"><i class="fas fa-thumbs-up"></i>　{{row.good}}</button>
+                              <button type="button" class="btn btn-outline-dark">comment</button>
+                              <button type="button" class="btn btn-info">Info</button>
                           </div>
-                        </div>
-                        <!-- ここまでカード -->
                       </div>
-                      <div class="col-12 col-md-6">
-                        <!-- ここからカード -->
-                        <div class="card card-right">
-                          <div class="container">
-                            <div class="row">
-                              <div class="col-2">image</div>
-                              <div class="col-8">{{row.title}}</div>
-                              <div class="col-2">Good button</div>
-                            </div>
-                          </div>
+                      {% if loop.index %2 == 0 %}
                         </div>
-                        <!-- ここまでカード -->
-                      </div>
-                    </div>
+                        <div class="row">
+                      {% endif %}
                     {% endfor %}
+                        </div>
                   </div>
+
+
+
 {% endblock %}
 
 {#共通フッタとして追記したい情報を記載します。#}
-{% block footer_scripts_add %}{% endblock %}
+{% block footer_scripts_add %}
+<script>
+
+
+</script>
+
+{% endblock %}
