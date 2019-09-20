@@ -46,7 +46,7 @@
                               <p class="card-text">{{row.sub_title}}</p>
                               <p class="card-text"><i class="fas fa-map-pin"></i>{{row.place}}</p>
                               <p class="card-text">{{row.create_date|date("Y年 m月 d日")}}</p>
-                              <button type="button" class="btn btn-primary"><i class="fas fa-thumbs-up"></i>　{{row.good}}</button>
+                              <button type="button" class="btn btn-primary countup" id="{{ row.id }}"><i class="fas fa-thumbs-up"></i>　{{row.good}}</button>
                               <button type="button" class="btn btn-outline-dark">comment</button>
                               <button type="button" class="btn btn-info">Info</button>
                           </div>
@@ -65,9 +65,20 @@
 
 {#共通フッタとして追記したい情報を記載します。#}
 {% block footer_scripts_add %}
-<script>
-
-
-</script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $('.countup').click(function(){
+                var target = $(this).attr('id')
+                $.ajax({
+                    type: 'GET',
+                    url: '/ajax', //post送信を受けとるphpファイル
+                    data: {"planid" :target }
+                }).done(function(data){
+                    $("#"+target).html('<i class="fas fa-thumbs-up"></i>　'+ data);
+                }).fail(function(msg) {
+                    console.log('Ajax Error');
+                });
+            });
+        });</script>
 {% endblock %}
