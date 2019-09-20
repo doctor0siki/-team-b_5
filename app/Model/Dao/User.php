@@ -15,10 +15,4 @@ namespace Model\Dao;
  */
 class User extends Dao
 {
-  public function get_user($id){
-    $sql = "select * from user";
-
-    $statement = $this->db->prepare($sql);
-    $statement->bindValue(":planid", $planid, PDO::PARAM_INT);
-  }
 }
