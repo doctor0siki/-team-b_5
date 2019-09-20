@@ -39,11 +39,11 @@ class Plan extends Dao
         $sql = "select * from plan where `title` like :word
                                       or `sub_title` like :word
                                       or `detail` like :word";
-       if($data["cat_code"]){
+       if(isset($data["cat_code"])){
          $sql.=" or cat_code=:cat_code";
        }
 
-       if($data["place"]){
+       if(isset ($data["place"])){
          $sql.=" or place like :place ";
        }
 
@@ -55,11 +55,11 @@ class Plan extends Dao
         //idを指定します
         $statement->bindValue(":word", "%".$data["word"]."%", PDO::PARAM_STR);
 
-        if($data["cat_code"]){
+        if(isset($data["cat_code"])){
           $statement->bindValue(":cat_code", $data["cat_code"], PDO::PARAM_INT);
         }
 
-        if($data["place"]){
+        if(isset($data["place"])){
           $statement->bindValue(":place", "%".$data["place"]."%", PDO::PARAM_STR);
         }
         //SQLを実行
