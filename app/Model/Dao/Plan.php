@@ -70,4 +70,77 @@ class Plan extends Dao
 
     }
 
+    /**
+     * getItem Function
+     *
+     * Itemテーブルから指定idのレコードを一件取得するクエリです。
+     *
+     * @param int $id 引数として、取得したい商品のアイテムIDを指定します。
+     * @return array $result 結果情報を連想配列で指定します。
+     * @throws DBALException
+     * @copyright Ceres inc.
+     * @author y-fukumoto <y-fukumoto@ceres-inc.jp>
+     * @since 2019/08/14
+     */
+
+    public function select_plan()
+    {
+
+        //全件取得するクエリを作成
+        $sql = "select * from plan";
+
+        // SQLをプリペア
+        $statement = $this->db->prepare($sql);
+
+
+        //SQLを実行
+        $statement->execute();
+
+        //結果レコードを一件取得し、返送
+        return $statement->fetchall();
+
+    }
+
+    public function add_good($planid){
+
+      $sql = "update plan set good=good+1 where id=:planid";
+            // SQLをプリペア
+      $statement = $this->db->prepare($sql);
+
+      $statement->bindValue(":planid", $planid, PDO::PARAM_INT);
+
+
+      //SQLを実行
+      $statement->execute();
+
+      $sql = "select * from plan where id=:planid";
+      // SQLをプリペア
+      $statement = $this->db->prepare($sql);
+
+      $statement->bindValue(":planid", $planid, PDO::PARAM_INT);
+      //SQLを実行
+      $statement->execute();
+
+      $result = $statement->fetch();
+
+
+      return $result["good"];
+
+
+    }
+
+    public function get_detailplan($planid){
+      $sql = "select * from plan left join user on plan.user_id = user.id where plan.id=:planid";
+      // SQLをプリペア
+      $statement = $this->db->prepare($sql);
+
+      $statement->bindValue(":planid", $planid, PDO::PARAM_INT);
+      //SQLを実行
+      $statement->execute();
+
+      $result = $statement->fetch();
+
+      return $result;
+
+    }
 }

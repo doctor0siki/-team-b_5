@@ -48,14 +48,18 @@
                                 <input type="password" class="form-control" id="password_re" name="password_re" value="" required title="Please re enter your password" placeholder="******">
                             </div>
                             <div class="form-group">
-                                <label for="password" class="control-label"> <span class="badge badge-danger">必須</span> ニックネーム</label>
+                                <label for="password" class="control-label"> <span class="badge badge-danger">必須</span> 名前</label>
                                 <input type="text" class="form-control" id="name" name="name" value="{{ name }}" required title="Please enter your name" placeholder="Toru">
                             </div>
-                            
                             <div class="form-group">
-                                <label for="password" class="control-label"> <span class="badge badge-danger">必須</span> 電話番号</label>
-                                <input type="tel" class="form-control" id="tel" name="tel" value="{{ tel }}" required title="Please enter your tel no" placeholder="03-1234-5678">
+                                <label for="password" class="control-label"> <span class="badge badge-danger">必須</span> ニックネーム</label>
+                                <input type="text" class="form-control" id="nickname" name="nickname" value="{{ nickname }}" required title="Please enter your nickname" placeholder="Toru">
                             </div>
+                            <div class="form-group">
+                                <label for="password" class="control-label">アイコン</label>
+                                <input type="text" class="form-control" id="icon_img" name="icon_img" value="{{icon_img}}">
+                            </div>
+
                             <div class="form-group">
                                 <label for="password" class="control-label">利用規約</label>
                                 <textarea class="form-control" rows="10" readonly>

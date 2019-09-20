@@ -59,65 +59,58 @@
       <div class="col-sm-5">
         <div class="name">
           <div class="picture0">
-            <img src="/assets/img/item_sikaku_800.png">
+            <img src="{{result.icon_img}}">
           </div>
-          <h2>ニックネーム</h2>
+          <h2>{{result.nickname}}</h2>
         </div>
         <br>
         <div class="picture1">
-          <img src="/assets/img/item_sikaku_800.png">
+          <img src="{{result.img_url}}">
         </div>
 
       </div>
       <div class="col-sm-7">
         <br> <br>
-        <h3>タイトル：～～～<br><br>
-            サブタイトル：～～～～<br><br>
-            カテゴリ：～～～～<br><br>
-          　内容：～～～～<br><br>
+        <h3>{{result.title}}<br><br>
+            サブタイトル：{{result.sub_title}}<br><br>
+            カテゴリ:
+            {% if result.cat_code == 1 %}
+             郷土料理
+            {% endif %}
+            {% if result.cat_code == 2 %}
+             地酒屋
+            {% endif %}
+            {% if result.cat_code == 3 %}
+             ワークスペース
+            {% endif %}
+            <br><br />
         </h3>
       </div>
     </div>
 <br><br>
-<a href="#" class="btn btn-info btn-block">コメントを書く</a>
+<a href="/comment/{{result.id}}" class="btn btn-success">コメントを書く</a>
 <br><br>
-
+ <h5>コメント</h5>
+  {% for col in comment %}
   <div class="border-bottom">
   <div class="post-for-comment">
     <div class="name">
       <div class="picture2">
-        <img src="/assets/img/item_sikaku_800.png">
+        <img src="{{col.icon_img}}"/>
       </div>
-      <h4>ニックネーム</h4>
+      <h4>{{col.nickname}}</h4>
     </div>
     <br>
-    <h5>コメント</h5>
-    <p>
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<br>
-      ========================================-==
+
+    <p>{{col.text|nl2br}}</p>
+      <br>
+
     </p>
     <br>
   </div>
   </div>
-
-  <div class="border-bottom">
-  <div class="post-for-comment">
-    <div class="name">
-      <div class="picture2">
-        <img src="/assets/img/item_sikaku_800.png">
-      </div>
-      <h4>ニックネーム</h4>
+  {% endfor %}
     </div>
-    <br>
-    <h5>コメント</h5>
-    <p>
-      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~<br>
-      ========================================-==
-    </p>
-    <br>
-  </div>
-  </div>
-
 </div>
 {% endblock %}
 

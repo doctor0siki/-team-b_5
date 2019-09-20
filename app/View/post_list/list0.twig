@@ -1,0 +1,83 @@
+{#レイアウトを継承します#}
+{% extends "layout/layout.twig" %}
+
+{#HTMLのタイトルを定義します。#}
+{% block title %}商品一覧{% endblock %}
+
+{# このページに適用させたいスタイルシートを指定します #}
+{% block header_scripts_add %}
+<!-- <link rel="stylesheet"  href="post_list.css"> -->
+
+<style>
+.card{
+  height:180px;
+  width:450px;
+  margin-bottom: 10px;
+}
+
+</style>
+{% endblock %}
+
+{#ここから表示したい情報を記載します。#}
+{% block page_content %}
+                {# 取得した結果分ループする処理です#}
+                {# コントローラで指定した $data["result"] は Twigでは result として扱えます #}
+                {# for文でresultの中の一次元目の配列をループで回す形となります #}
+                {# ループ処理中の1行はrowの中に入りますので、このループ中はrow.カラム名で情報を表示することが可能です #}
+                  <div class="container">
+                    {% for row in result %}
+                    <div class="row">
+                      <!-- ここから左カード -->
+                      <div class="col-12 col-md-6">
+                        <div class="card card-left">
+                          <div class="container">
+                            <div class="row">
+
+                                <!-- ここから画像 -->
+                                <div class="col-2"><span><img src="eraiza.jpg"/></span></div>
+                                <!-- ここまで画像 -->
+
+                                <!-- ここからタイトル、サブタイトル、場所、いつ -->
+                                <div class="col-8">
+                                  <div class="container">
+                                      <div class="row">
+                                          <div class="col titleName">{{row.title}}</div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="col subtitleName">{{row.sub_title}}</div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col where">{{row.place}}</div>
+                                      </div>
+                                      <div class="row">
+                                        <div class="col when">{{row.create_date|date("Y年 m月 d日")}}</div>
+                                      </div>
+                                  </div>
+                                </div>
+                              <!-- ここまでタイトル、サブタイトル、場所いつ -->
+
+                                <!-- ここからいいね！、コメント -->
+                                <div class="col-2">
+                                  　<div class="container">
+                                      <div class="row">
+                                          <div class="col when"><button type="button" class="btn btn-primary">{{row.good}}いいね！</button></div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="col when"><button type="button" class="btn btn-outline-dark">コメント</button></div>
+                                      </div>
+                                    </div>
+                                 </div>
+                                <!-- ここまでいいね！、コメント -->
+                               </div>
+                            </div>
+                          </div>
+                        </div>
+                      <!-- ここまでカード -->
+                      </div>
+                    </div>
+                    {% endfor %}
+                  </div>
+{% endblock %}
+
+{#共通フッタとして追記したい情報を記載します。#}
+{% block footer_scripts_add %}{% endblock %}
